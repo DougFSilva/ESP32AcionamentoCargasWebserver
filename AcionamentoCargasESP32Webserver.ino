@@ -8,33 +8,16 @@
 const char* ssid = "Senai_IoT";      //crie uma rede WiFi e insira aqui o nome da rede ou use uma rede já existente
 const char* password = "sonoffr2";  //coloque a senha da rede WiFi 
 
-IPAddress local_IP(192, 168, 1, 2);
-// Set your Gateway IP address
-IPAddress gateway(192, 168, 1, 1);
-IPAddress subnet(255, 255, 255, 0);
-IPAddress primaryDNS(8, 8, 8, 8);   //optional
-IPAddress secondaryDNS(8, 8, 4, 4); //optional
 WiFiServer server(80);
 
 void wifiConnect(){
 
-  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) {
-    Serial.println("Falha ao configurar wifi");
-  }
-  
   WiFi.begin(ssid, password);
-
-  Serial.print("Conectando em ");
-  Serial.println(ssid);
-
+  Serial.print("Connectando ao WiFi ..");
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
+    Serial.print('.');
+    delay(1000);
   }
-
-  Serial.println("");
-  Serial.println("WiFi conectado!");
-  Serial.println("IP: ");
   Serial.println(WiFi.localIP());
 
 }
